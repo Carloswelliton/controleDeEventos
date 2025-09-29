@@ -47,10 +47,17 @@ class InscricaoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function showEachInscricao(){
+
+        $eventos = Inscricoes::All()->pluck("evento")->unique("evento");
+        foreach($eventos as $evento){
+            
+        }
+        
+
+
     }
+    
 
     /**
      * Show the form for editing the specified resource.

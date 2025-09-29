@@ -10,3 +10,4 @@ Route::get('/inscricao/{id}/editar', [InscricaoController::class, 'edit'])->name
 Route::get('/inscricao/confirmar', [InscricaoController::class, 'confirmar'])->name('confirmar');
 Route::put('/inscricao/{id}/atualizar', [InscricaoController::class, 'update'])->name('atualizar_inscricao');
 Route::get('/inscricao/{id}/excluir', [InscricaoController::class, 'destroy'])->name('excluir_inscricao');
+Route::get('/teste',[InscricaoController::class, 'showEachInscricao'])->name('teste_de_dump');  
