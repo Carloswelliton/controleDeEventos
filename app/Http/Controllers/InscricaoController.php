@@ -10,10 +10,14 @@ class InscricaoController extends Controller
     /**
      * puxa os dados salvos com base na Model Inscricoes
      */
-    public function index()
-    {
-        $inscricao = Inscricoes::All();
-        return view();
+    public function index() {
+      $inscricoes = Inscricoes::All()->where('status', '=', 'Confirmado');
+      return view('home', compact('inscricoes'));
+    }
+
+    public function confirmar() {
+      $inscricoes = Inscricoes::All()->where('status', '!=', 'Confirmado');
+      return view('eventos.confirmar', compact('inscricoes'));
     }
 
     /**
@@ -21,7 +25,7 @@ class InscricaoController extends Controller
      */
     public function create()
     {
-        return view('inscricao');
+      return view('eventos.inscricao');
     }
 
     /**
@@ -37,7 +41,7 @@ class InscricaoController extends Controller
         $inscricao->status = $request->status;
         $inscricao->save();
 
-        return view('/');
+        return redirect('/');
     }
 
     /**
@@ -54,7 +58,7 @@ class InscricaoController extends Controller
     public function edit(string $id)
     {
         $inscricao = Inscricoes::find($id);
-        return view();
+        return view('eventos.editar', compact('inscricao'));
     }
 
     /**
@@ -67,7 +71,7 @@ class InscricaoController extends Controller
             'evento' => $request->evento,
             'data_evento' => $request->data_evento,
             'status' => $request->status,
-            
+
         ]);
 
         return redirect('/');
