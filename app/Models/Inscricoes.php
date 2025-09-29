@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Inscricoes extends Model
 {
-    protected $table = 'inscricoes';
-    protected $fillable = [
-        'nome',
-        'evento',
-        'data_evento',
-        'status'
-    ];
+  use HasFactory;
+
+  protected $table = 'inscricoes';
+  protected $fillable = [
+      'nome',
+      'evento',
+      'data_evento',
+      'status'
+  ];
 }
