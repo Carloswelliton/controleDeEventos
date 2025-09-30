@@ -59,31 +59,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row"><span>1</span></th>
-              <td><span>Semana da Ciência e Tecnologia</span></td>
-              <td><span></span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span>2</span></th>
-              <td><span>SEMICT 2025</span></td>
-              <td><span></span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span>3</span></th>
-              <td><span>Hackaton de Desenvolvimento</span></td>
-              <td><span></span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span>4</span></th>
-              <td><span>Feira de Empreendedorismo</span></td>
-              <td><span></span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span>5</span></th>
-              <td><span>Paseata contra aulas no sábado</span></td>
-              <td><span></span></td>
-            </tr>
+            <span hidden>{{ $i = 1 }}</span>
+            @foreach ($inscritos_por_evento as $evento => $value)
+              <tr>
+                <th scope="row"><span>{{ $i++ }}</span></th>
+                <td><span>{{$evento}}</span></td>
+                <td><span>{{$value}}</span></td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
