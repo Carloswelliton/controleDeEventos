@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\models\Inscricoes;
 
@@ -12,7 +13,14 @@ class InscricaoController extends Controller
      */
     public function index() {
       $inscricoes = Inscricoes::All()->where('status', '=', 'Confirmado');
-      return view('home', compact('inscricoes'));
+
+      $inscritos_por_evento = new Collection();
+      $eventos_list = Inscricoes::All();
+      $eventos = Inscricoes::All()->pluck("evento");
+      foreach($eventos as $evento){
+        $inscritos_por_evento->put($evento, $eventos_list->where('evento', '=', $evento)->count());
+      }
+      return view('home', compact('inscricoes', 'inscritos_por_evento'));
     }
 
     public function confirmar() {
@@ -43,21 +51,6 @@ class InscricaoController extends Controller
 
         return redirect('/');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function showEachInscricao(){
-
-        $eventos = Inscricoes::All()->pluck("evento")->unique("evento");
-        foreach($eventos as $evento){
-            
-        }
-        
-
-
-    }
-    
 
     /**
      * Show the form for editing the specified resource.
